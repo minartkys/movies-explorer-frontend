@@ -8,22 +8,37 @@ function Footer() {
             <div className="footer__info">
                 <p className="footer__copyright">&copy; 2022</p>
                 <ul className="footer__links">
-                    <li
-                        className="footer__link"
-                        href="https://practicum.yandex.ru/"
-                    >
-                        Яндекс.Практикум
+                    <li className="footer__link">
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="footer__link"
+                            href="https://practicum.yandex.ru/"
+                        >
+                            Яндекс.Практикум
+                        </a>
                     </li>
 
-                    <li
-                        className="footer__link"
-                        href="https://github.com/minartkys"
-                    >
-                        Github
+                    <li className="footer__link">
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="footer__link"
+                            href="https://github.com/minartkys"
+                        >
+                            Github
+                        </a>
                     </li>
 
-                    <li className="footer__link" href="https://vk.com/minartkys">
-                        Вконтакте
+                    <li className="footer__link">
+                        <a
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="footer__link"
+                            href="https://vk.com/minartkys"
+                        >
+                            Вконтакте
+                        </a>
                     </li>
                 </ul>
             </div>

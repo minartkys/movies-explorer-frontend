@@ -21,17 +21,25 @@ function AboutMe() {
                         данный момент в поисках работы в данной сфере.
                     </h4>
                     <ul className="aboutMe__social">
-                        <li
-                            className="about-me__link"
-                            href="https://vk.com/minartkys"
-                        >
-                            Вконтакте
+                        <li className="aboutMe__link">
+                            <a
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="aboutMe__link"
+                                href="https://vk.com/minartkys"
+                            >
+                                Вконтакте
+                            </a>
                         </li>
-                        <li
-                            className="about-me__link"
-                            href="https://github.com/minartkys"
-                        >
-                            Github
+                        <li className="aboutMe__link">
+                            <a
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="aboutMe__link"
+                                href="https://github.com/minartkys"
+                            >
+                                Github
+                            </a>
                         </li>
                     </ul>
                 </div>

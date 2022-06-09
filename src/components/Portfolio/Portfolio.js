@@ -7,6 +7,8 @@ function Portfolio() {
             <div className="portfolio__links">
                 <h2 className="portfolio__linkName">Статичный сайт</h2>
                 <a
+                    target="_blank"
+                    rel="noreferrer noopener"
                     className="portfolio__link"
                     href="https://github.com/minartkys/first-project"
                 >
@@ -20,6 +22,8 @@ function Portfolio() {
             <div className="portfolio__links">
                 <h2 className="portfolio__linkName">Адаптивный сайт</h2>
                 <a
+                    target="_blank"
+                    rel="noreferrer noopener"
                     className="portfolio__link"
                     href="https://minartkys.github.io/russian-travel/index.html"
                 >
@@ -35,6 +39,8 @@ function Portfolio() {
                     Одностраничное приложение
                 </h2>
                 <a
+                    target="_blank"
+                    rel="noreferrer noopener"
                     className="portfolio__link"
                     href="https://github.com/minartkys/mesto"
                 >

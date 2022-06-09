@@ -20,7 +20,6 @@
     background: none;
     border: none;
     margin: 25px;
-    font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -34,13 +33,17 @@
     border-radius: 5px;
     width: 100px;
     height: 52px;
-    font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
     text-align: center;
     color: #ffffff;
+    transition: opacity 0.5s ease-in-out;
+}
+.searchForm__button-search:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 .searchForm__filter {
     display: flex;
@@ -52,7 +55,6 @@
 .searchForm__filterText {
     margin: 0;
     margin-left: 14px;
-    font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
