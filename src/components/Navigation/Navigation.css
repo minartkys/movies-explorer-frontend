@@ -1,0 +1,102 @@
+.navigation {
+    margin: 0;
+    margin-top: 21px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 183px;
+}
+.button__reg {
+    text-decoration: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ffffff;
+    width: 77px;
+    height: 16px;
+    transition: opacity 0.5s ease-in-out;
+}
+.button__reg:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.button__login {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3ddc84;
+    border: none;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+    width: 76px;
+    height: 32px;
+    transition: opacity 0.5s ease-in-out;
+}
+.button__login:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.navigation__menu {
+    margin: 0 auto;
+    display: flex;
+    margin-right: 364px;
+}
+.navigation__link {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: right;
+    color: #ffffff;
+    margin-right: 16px;
+    transition: opacity 0.5s ease-in-out;
+}
+.navigation__link:last-of-type {
+    margin-right: 0px;
+}
+.navigation__link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.button__account {
+    background-color: transparent;
+    border: none;
+    transition: opacity 0.5s ease-in-out;
+}
+.button__account:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media (max-width: 860px) {
+    .navigation__menu {
+        margin-right: 180px;
+    }
+}
+
+@media (max-width: 560px) {
+    .button__reg {
+        font-size: 10px;
+        width: 64px;
+    }
+    .button__login {
+        font-size: 10px;
+        width: 54px;
+        height: 26px;
+    }
+    .navigation {
+        min-width: 132px;
+        margin-top: 24px;
+    }
+}

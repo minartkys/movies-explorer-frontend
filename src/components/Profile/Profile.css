@@ -1,0 +1,111 @@
+.profile {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 410px;
+    padding-top: 74px;
+    min-height: 714px;
+}
+.profile__title {
+    margin: 0;
+    margin-bottom: 123px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #ffffff;
+}
+.profile__block {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #424242;
+}
+.profile__block:last-of-type {
+    margin-top: 16px;
+    margin-bottom: 220px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.profile__block-title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #ffffff;
+}
+.profile__block-input {
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: right;
+    color: #ffffff;
+}
+.profile__edit-bth {
+    margin: 0 auto;
+    margin-bottom: 16px;
+    background: transparent;
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    transition: opacity 0.5s ease-in-out;
+}
+.profile__edit-bth:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.profile__close-btn {
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ee3465;
+    transition: opacity 0.5s ease-in-out;
+}
+.profile__close-btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+@media (max-width: 910px) {
+    .profile {
+        padding-top: 236px;
+    }
+    .profile__block:last-of-type {
+        margin-bottom: 210px;
+    }
+}
+@media (max-width: 560px) {
+    .profile {
+        padding: 0 30px;
+        padding-top: 70px;
+        min-height: auto;
+    }
+    .profile__title {
+        margin-bottom: 70px;
+    }
+    .profile__block:last-of-type {
+        margin-bottom: 379px;
+    }
+    .profile__close-btn {
+        margin-bottom: 40px;
+    }
+}

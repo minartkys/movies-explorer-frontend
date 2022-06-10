@@ -1,0 +1,97 @@
+.searchForm {
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    padding: 0 30px;
+    max-width: 1140px;
+}
+.searchForm__container {
+    display: flex;
+    margin: 0;
+    margin-top: 70px;
+    max-width: 1140px;
+    justify-content: space-between;
+    height: 72px;
+    border: 1.5px solid #aaaaaa;
+    border-radius: 8px;
+}
+.searchForm__input {
+    display: flex;
+    background: none;
+    border: none;
+    margin: 25px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8b8b8b;
+}
+.searchForm__button-search {
+    margin: 10px;
+    background: #4285f4;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 52px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #ffffff;
+    transition: opacity 0.5s ease-in-out;
+}
+.searchForm__button-search:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.searchForm__filter {
+    display: flex;
+    margin: 0;
+    margin-top: 26px;
+    padding-bottom: 43px;
+    border-bottom: 1px solid #aaaaaa;
+}
+.searchForm__filterText {
+    margin: 0;
+    margin-left: 14px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: #ffffff;
+}
+@media (max-width: 910px) {
+    .searchForm__filter {
+        padding-bottom: 51px;
+    }
+}
+@media (max-width: 560px) {
+    .searchForm {
+        padding: 0 14px;
+    }
+    .searchForm__container {
+        height: 56px;
+    }
+    .searchForm__input {
+        max-width: 150px;
+        margin-top: 20px;
+        margin-left: 12px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        line-height: 16px;
+    }
+    .searchForm__button-search {
+        margin: 6px;
+        width: 80px;
+        height: 44px;
+    }
+    .searchForm__filter {
+        margin-top: 31px;
+        padding-bottom: 64px;
+    }
+    .searchForm__filterText {
+        font-size: 11px;
+        margin-left: 13px;
+    }
+}
