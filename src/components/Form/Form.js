@@ -1,45 +1,160 @@
 import { Route, Switch, Link } from "react-router-dom";
+import React from "react";
 import "./Form.css";
+import { REG_EMAIL } from "../../utils/constants";
 
-export default function Form() {
+export default function Form(props) {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [emailDirty, setEmailDirty] = React.useState(false);
+    const [passwordDirty, setPasswordDirty] = React.useState(false);
+    const [emailError, setEmailError] = React.useState(
+        "Email не может быть пустым"
+    );
+    const [passwordError, setPasswordError] = React.useState(
+        "Пароль не может быть пустым"
+    );
+    const [name, setName] = React.useState("");
+    const [nameDirty, setNameDirty] = React.useState(false);
+    const [nameError, setNameError] = React.useState(
+        "Имя не может быть пустым"
+    );
+    const [formRegValid, setFormRegValid] = React.useState(false);
+    const [formLoginValid, setFormLoginValid] = React.useState(false);
+
+    React.useEffect(() => {
+        if (emailError || passwordError || nameError) {
+            setFormRegValid(false);
+        } else setFormRegValid(true);
+    }, [nameError, emailError, passwordError]);
+
+    React.useEffect(() => {
+        if (emailError || passwordError) {
+            setFormLoginValid(false);
+        } else setFormLoginValid(true);
+    }, [nameError, emailError, passwordError]);
+
+    function blurHandler(e) {
+        switch (e.target.name) {
+            case "email":
+                setEmailDirty(true);
+                break;
+            case "password":
+                setPasswordDirty(true);
+                break;
+            case "name":
+                setNameDirty(true);
+                break;
+            default:
+        }
+    }
+
+    function onChangeName(e) {
+        setName(e.target.value);
+        if (e.target.value.length < 2) {
+            setNameError("Некорректное имя");
+            if (e.target.value.length === 0) {
+                setNameError("Поле не может быть пустым");
+            }
+        } else setNameError("");
+    }
+    function onChangeEmail(e) {
+        setEmail(e.target.value);
+        if (!REG_EMAIL.test(String(e.target.value).toLowerCase())) {
+            setEmailError("Некорректный email");
+            if (e.target.value.length === 0) {
+                setEmailError("Поле не может быть пустым");
+            }
+        } else setEmailError("");
+    }
+    function onChangePassword(e) {
+        setPassword(e.target.value);
+        if (e.target.value.length < 8) {
+            setPasswordError("Некорректный пароль");
+            if (e.target.value.length === 0) {
+                setPasswordError("Поле не может быть пустым");
+            }
+        } else setPasswordError("");
+    }
+    function handleRegister(e) {
+        e.preventDefault();
+        props.handleRegNewUser({ name, email, password });
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+        props.handleLogin({ email, password });
+    }
+
     return (
         <Switch>
             <Route exact path="/signup">
                 <h2 className="register__title">Добро пожаловать!</h2>
-                <form className="form" novalidate>
+                <form className="form" onSubmit={handleRegister}>
                     <p className="form__input-name">Имя</p>
                     <input
+                        onBlur={blurHandler}
+                        onChange={onChangeName}
+                        value={name}
                         type="text"
-                        name="Name"
-                        id="Name"
-                        className="form__input"
-                        autocomplete="off"
+                        name="name"
+                        id="name"
+                        className={`${
+                            nameDirty && nameError
+                                ? "form__input form__input-errorColor"
+                                : "form__input"
+                        }`}
+                        autoComplete="off"
                         required
                     />
-                    <span className="form__input-error"></span>
+                    {nameDirty && nameError && (
+                        <span className="form__input-error">{nameError}</span>
+                    )}
                     <p className="form__input-name">E-mail</p>
                     <input
+                        onBlur={blurHandler}
+                        onChange={onChangeEmail}
+                        value={email}
                         type="text"
-                        name="Email"
+                        name="email"
                         id="email"
-                        className="form__input"
-                        autocomplete="off"
+                        className={`${
+                            emailDirty && emailError
+                                ? "form__input form__input-errorColor"
+                                : "form__input"
+                        }`}
+                        autoComplete="off"
                         required
                     />
-                    <span className="form__input-error"></span>
+                    {emailDirty && emailError && (
+                        <span className="form__input-error">{emailError}</span>
+                    )}
                     <p className="form__input-name ">Пароль</p>
                     <input
+                        onBlur={blurHandler}
+                        onChange={onChangePassword}
+                        value={password}
                         type="password"
                         name="password"
                         id="password"
-                        className="form__input form__input-error"
-                        autocomplete="off"
+                        className={`${
+                            passwordDirty && passwordError
+                                ? "form__input form__input-errorColor"
+                                : "form__input"
+                        }`}
+                        autoComplete="off"
                         required
                     />
-                    <span className="form__input-error">
-                        Что-то пошло не так...
-                    </span>
-                    <button type="submit" className="form__button">
+                    {passwordDirty && passwordError && (
+                        <span className="form__input-error">
+                            {passwordError}
+                        </span>
+                    )}
+                    <button
+                        disabled={!formRegValid}
+                        type="submit"
+                        className="form__button"
+                    >
                         Зарегистрироваться
                     </button>
                     <div className="form__links">
@@ -52,27 +167,52 @@ export default function Form() {
             </Route>
             <Route exact path="/signin">
                 <h2 className="register__title">Рады видеть!</h2>
-                <form className="form" novalidate>
+                <form className="form" onSubmit={handleLogin}>
                     <p className="form__input-name">E-mail</p>
                     <input
+                        onBlur={blurHandler}
+                        onChange={onChangeEmail}
+                        value={email}
                         type="text"
-                        name="Email"
+                        name="email"
                         id="email"
-                        className="form__input"
-                        autocomplete="off"
+                        className={`${
+                            emailDirty && emailError
+                                ? "form__input form__input-errorColor"
+                                : "form__input"
+                        }`}
+                        autoComplete="off"
                         required
                     />
-                    <span className="form__input-error"></span>
+                    {emailDirty && emailError && (
+                        <span className="form__input-error">{emailError}</span>
+                    )}
                     <p className="form__input-name ">Пароль</p>
                     <input
+                        onBlur={blurHandler}
+                        value={password}
                         type="password"
                         name="password"
                         id="password"
-                        className="form__input"
-                        autocomplete="off"
+                        onChange={onChangePassword}
+                        className={`${
+                            passwordDirty && passwordError
+                                ? "form__input form__input-errorColor"
+                                : "form__input"
+                        }`}
+                        autoComplete="off"
                         required
                     />
-                    <button type="submit" className="form__button form__button_login">
+                    {passwordDirty && passwordError && (
+                        <span className="form__input-error">
+                            {passwordError}
+                        </span>
+                    )}
+                    <button
+                        disabled={!formLoginValid}
+                        type="submit"
+                        className="form__button form__button_login"
+                    >
                         Войти
                     </button>
                     <div className="form__links">

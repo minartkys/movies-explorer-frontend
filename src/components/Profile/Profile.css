@@ -48,8 +48,19 @@
     text-align: right;
     color: #ffffff;
 }
+.profile__input-error {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #ee3465;
+}
 .profile__edit-bth {
     margin: 0 auto;
+    margin-top: 10px;
     margin-bottom: 16px;
     background: transparent;
     border: none;
@@ -62,6 +73,10 @@
     text-align: center;
     color: #ffffff;
     transition: opacity 0.5s ease-in-out;
+}
+.profile__edit-bth:disabled {
+    color: #a0a0a0;
+    cursor: default;
 }
 .profile__edit-bth:hover {
     opacity: 0.5;

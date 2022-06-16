@@ -40,13 +40,14 @@
 }
 
 .preloader {
+    margin: 0 auto;
     display: flex;
     align-items: center;
+    align-self: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     z-index: 10;
-    padding: 20px;
 }
 
 .preloader__container {
@@ -61,13 +62,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #FF6838;
+    background: #ff6838;
     border-radius: 50px;
 }
 
 .preloader__round::after,
 .preloader__round::before {
-    content: '';
+    content: "";
     width: 100px;
     height: 100px;
     position: absolute;
@@ -83,6 +84,6 @@
 
 .preloader__round::before {
     z-index: 10;
-    background: #FF6838;
+    background: #ff6838;
     animation: preloader-inside-red 1s ease-in-out infinite;
 }

@@ -9,10 +9,10 @@ import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-function Main() {
+function Main(props) {
     return (
         <div className="main">
-            <Header />
+            <Header isLoggedIn={props.isLoggedIn} />
             <Promo />
             <NavTab />
             <AboutProject />
