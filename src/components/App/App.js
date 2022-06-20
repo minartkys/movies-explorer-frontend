@@ -137,6 +137,7 @@ function App() {
             .catch((err) => {
                 console.error(err);
                 setErrorProfileChange(true);
+                setSuccesfulProfileChange(false);
             });
     }
 

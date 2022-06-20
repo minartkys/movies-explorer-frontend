@@ -85,7 +85,7 @@
     transition: opacity 0.5s ease-in-out;
 }
 .profile__edit-bth:disabled {
-    color: green;
+    color: #a0a0a0;
     cursor: default;
 }
 .profile__edit-bth:hover {
