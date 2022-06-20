@@ -6,19 +6,20 @@ import "./Profile.css";
 import { REG_EMAIL } from "../../utils/constants";
 function Profile(props) {
     const currentUser = React.useContext(CurrentUserContext);
-    const [name, setName] = React.useState("");
+    const [name, setName] = React.useState(currentUser.name);
     const [nameDirty, setNameDirty] = React.useState(false);
     const [nameError, setNameError] = React.useState("");
-    const [email, setEmail] = React.useState("");
+    const [email, setEmail] = React.useState(currentUser.email);
     const [emailDirty, setEmailDirty] = React.useState(false);
     const [emailError, setEmailError] = React.useState("");
     const [formValid, setFormValid] = React.useState(false);
 
     React.useEffect(() => {
+        console.log(name, email);
         if (emailError || nameError) {
             setFormValid(false);
         } else setFormValid(true);
-    }, [nameError, emailError]);
+    }, [nameError, emailError, name, email]);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -102,6 +103,12 @@ function Profile(props) {
                             При обновлении профиля произошла ошибка.
                         </span>
                     )}
+                    {props.succesfulProfileChange && (
+                        <span className="profile__input-succesful">
+                            Профиль успешно обновлён
+                        </span>
+                    )}
+
                     <button disabled={!formValid} className="profile__edit-bth">
                         Редактировать
                     </button>

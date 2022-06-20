@@ -22,6 +22,7 @@ function App() {
     );
     const [filteredSaveMovies, setFilteredSaveMovies] = React.useState([]);
     const [isShortMovie, setIsShortMovie] = React.useState(false);
+    const [isShortSavedMovie, setIsShortSavedMovie] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
     const [nothingFound, setNothingFound] = React.useState(false);
     const [nothingFoundSaveMovies, setNothingFoundSaveMovies] =
@@ -31,6 +32,8 @@ function App() {
     const [saveMovie, setSaveMovie] = React.useState([]);
     const [isSearch, setIsSearch] = React.useState(false);
     const [errorProfileChange, setErrorProfileChange] = React.useState(false);
+    const [succesfulProfileChange, setSuccesfulProfileChange] =
+        React.useState(false);
     let location = useLocation();
 
     React.useEffect(() => {
@@ -89,6 +92,13 @@ function App() {
         }
     }, [isLoggedIn, movies]);
 
+    React.useEffect(() => {
+        console.log(localStorage.getItem("checkBox"));
+        if (JSON.parse(localStorage.getItem("checkBox")) === true) {
+            setIsShortMovie(true);
+        }
+    }, []);
+
     function handleRegNewUser({ name, email, password }) {
         return auth
             .regNewUser(name, email, password)
@@ -122,6 +132,7 @@ function App() {
             .then((profileInfo) => {
                 setErrorProfileChange(false);
                 setCurrentUser(profileInfo);
+                setSuccesfulProfileChange(true);
             })
             .catch((err) => {
                 console.error(err);
@@ -147,6 +158,8 @@ function App() {
                     movie.nameRU.toLowerCase().includes(value.toLowerCase())
                 );
             });
+            localStorage.setItem("filteredMovies", JSON.stringify(shortMovie));
+            localStorage.setItem("checkBox", JSON.stringify(true));
             return setFilteredMovies(shortMovie);
         } else {
             const filteredMovie = movies.filter((movie) => {
@@ -156,13 +169,14 @@ function App() {
                 "filteredMovies",
                 JSON.stringify(filteredMovie)
             );
+            localStorage.setItem("checkBox", JSON.stringify(""));
             return setFilteredMovies(filteredMovie);
         }
     }
 
     function handleSearchSavedMovie(value) {
         setNothingFoundSaveMovies(false);
-        if (isShortMovie) {
+        if (isShortSavedMovie) {
             const shortMovie = saveMovie.filter((movie) => {
                 return (
                     movie.duration <= MOVIES_DURATION_SHORT &&
@@ -227,6 +241,11 @@ function App() {
         else setIsShortMovie(false);
     }
 
+    function handleCheckboxClickSavedMovie() {
+        if (!isShortSavedMovie) setIsShortSavedMovie(true);
+        else setIsShortSavedMovie(false);
+    }
+
     function showPreloader() {
         setIsLoading(true);
         setTimeout(async () => {
@@ -265,9 +284,9 @@ function App() {
                         component={SavedMovies}
                         isLoggedIn={isLoggedIn}
                         isLoading={isLoading}
-                        isShortMovie={isShortMovie}
+                        isShortMovie={isShortSavedMovie}
                         showPreloader={showPreloader}
-                        handleCheckboxClick={handleCheckboxClick}
+                        handleCheckboxClick={handleCheckboxClickSavedMovie}
                         handleSearchSavedMovie={handleSearchSavedMovie}
                         movies={filteredMovies}
                         savedMovies={saveMovie}
@@ -295,6 +314,7 @@ function App() {
                         logoutProfile={logoutProfile}
                         handleUpdateUser={handleUpdateUser}
                         currentUser={currentUser}
+                        succesfulProfileChange={succesfulProfileChange}
                     ></ProtectedRoute>
                     <Route path="*">
                         <Error />
