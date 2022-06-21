@@ -2,10 +2,10 @@ import "./Navigation.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import Account from "../../images/profileAvatar.svg";
-export default function Navigation({ isLoggedIn }) {
+export default function Navigation(props) {
     return (
         <div className="navigation">
-            {!isLoggedIn ? (
+            {!props.isLoggedIn ? (
                 <>
                     <Link to="/signup" className="button__reg">
                         Регистрация

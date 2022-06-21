@@ -8,10 +8,21 @@
     margin-top: 105px;
     padding: 0 30px;
 }
+.moviesCardList__btn_invisible {
+    display: none;
+}
 .moviesCardList__block {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 38px 20px;
+}
+.moviesCardList__span {
+    margin: 0;
+    color: red;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 27px;
 }
 .moviesCardList__btn {
     border: none;
@@ -28,7 +39,14 @@
     color: #ffffff;
     background: #2f2f2f;
     border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
 }
+.moviesCardList__btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 @media (max-width: 1200px) {
     .moviesCardList__block {
         grid-template-columns: repeat(3, 1fr);

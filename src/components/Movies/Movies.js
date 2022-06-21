@@ -6,14 +6,28 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 
-function Movies() {
+function Movies(props) {
     return (
         <section className="movies">
             <Header>
-                <Navigation />
+                <Navigation isLoggedIn={props.isLoggedIn} />
             </Header>
-            <SearchForm />
-            <MoviesCardList/>
+            <SearchForm
+                handleSearch={props.handleSearch}
+                isShortMovie={props.isShortMovie}
+                handleCheckboxClick={props.handleCheckboxClick}
+                showPreloader={props.showPreloader}
+                checkMoviesFound={props.checkMoviesFound}
+            />
+            <MoviesCardList
+                movies={props.movies}
+                savedMovies={props.savedMovies}
+                isLoading={props.isLoading}
+                nothingFound={props.nothingFound}
+                handleSaveMovie={props.handleSaveMovie}
+                handleDeleteMovie={props.handleDeleteMovie}
+                filteredSaveMovies={props.filteredSaveMovies}
+            />
             <Footer />
         </section>
     );

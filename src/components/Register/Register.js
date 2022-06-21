@@ -4,13 +4,16 @@ import logo from "../../images/logo.svg";
 import "./Register.css";
 import Form from "../Form/Form";
 
-function Register() {
+function Register(props) {
     return (
         <section className="register">
             <Link to="/" className="register__logo">
                 <img src={logo} className="register__logo" alt="logo" />
             </Link>
-            <Form />
+            <Form
+                handleRegNewUser={props.handleRegNewUser}
+                handleLogin={props.handleLogin}
+            />
         </section>
     );
 }

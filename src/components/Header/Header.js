@@ -4,7 +4,7 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-export default function Header(isLoggedIn) {
+export default function Header(props) {
     return (
         <Switch>
             <Route exact path="/">
@@ -13,7 +13,7 @@ export default function Header(isLoggedIn) {
                         <img src={logo} className="header__logo" alt="logo" />
                     </Link>
                     <div className="header-navlink">
-                        <Navigation isLoggedIn={false}></Navigation>
+                        <Navigation isLoggedIn={props.isLoggedIn}></Navigation>
                     </div>
                 </header>
             </Route>
@@ -23,7 +23,7 @@ export default function Header(isLoggedIn) {
                         <img src={logo} className="header__logo" alt="logo" />
                     </Link>
                     <div className="header-navlink header-navlink__visible">
-                        <Navigation isLoggedIn={true}></Navigation>
+                        <Navigation isLoggedIn={!props.isLoggedIn}></Navigation>
                     </div>
                     <BurgerMenu />
                 </header>
