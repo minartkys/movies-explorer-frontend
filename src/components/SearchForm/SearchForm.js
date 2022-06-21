@@ -4,7 +4,9 @@ import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm(props) {
-    const [movie, setMovie] = React.useState("");
+    const [movie, setMovie] = React.useState(
+        JSON.parse(localStorage.getItem("movieSearchText")) || ""
+    );
     const [savedMovie, setSaveMovie] = React.useState("");
 
     function handleSearchMovie(e) {
@@ -16,6 +18,7 @@ function SearchForm(props) {
 
     function handleSubmit(evt) {
         evt.preventDefault();
+        localStorage.setItem("movieSearchText", JSON.stringify(movie));
         props.showPreloader();
         props.handleSearch(movie);
         props.checkMoviesFound();
@@ -45,6 +48,7 @@ function SearchForm(props) {
                             type="text"
                             required
                             onChange={handleSearchMovie}
+                            value={movie}
                         />
                         <button
                             type="submit"
@@ -78,6 +82,7 @@ function SearchForm(props) {
                             type="text"
                             required
                             onChange={handleSearchMovieSaved}
+                            value={savedMovie}
                         />
                         <button
                             type="submit"

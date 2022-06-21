@@ -45,6 +45,7 @@ function App() {
                     if (data) {
                         setisLoggedIn(true);
                         history.push(path);
+                        console.log(currentUser);
                     }
                 })
                 .catch((err) => {
@@ -72,12 +73,9 @@ function App() {
             Promise.all([mainApi.getUserInformation(), mainApi.getSaveMovies()])
                 .then(([profileInfo, savedMovies]) => {
                     setCurrentUser(profileInfo);
-                    console.log(savedMovies);
-                    console.log(profileInfo);
                     const mySavedMovies = savedMovies.filter(
                         (i) => i.owner === profileInfo._id
                     );
-                    console.log(mySavedMovies);
                     localStorage.setItem(
                         "savedMovies",
                         JSON.stringify(mySavedMovies)
@@ -93,10 +91,9 @@ function App() {
     }, [isLoggedIn, movies]);
 
     React.useEffect(() => {
-        console.log(localStorage.getItem("checkBox"));
         if (JSON.parse(localStorage.getItem("checkBox")) === true) {
             setIsShortMovie(true);
-        }
+        } else setIsShortMovie(false);
     }, []);
 
     function handleRegNewUser({ name, email, password }) {
@@ -143,11 +140,12 @@ function App() {
 
     function logoutProfile() {
         setisLoggedIn(false);
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("savedMovies");
-        localStorage.removeItem("filteredMovies");
-        localStorage.removeItem("movieData");
+        localStorage.clear();
         history.push("/movies");
+        setFilteredMovies([]);
+        setFilteredSaveMovies([]);
+        setSaveMovie([]);
+        setIsShortMovie(false);
     }
 
     function handleSearch(value) {
@@ -314,7 +312,6 @@ function App() {
                         isLoggedIn={isLoggedIn}
                         logoutProfile={logoutProfile}
                         handleUpdateUser={handleUpdateUser}
-                        currentUser={currentUser}
                         succesfulProfileChange={succesfulProfileChange}
                     ></ProtectedRoute>
                     <Route path="*">

@@ -1,30 +1,38 @@
 import React from "react";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./Profile.css";
 import { REG_EMAIL } from "../../utils/constants";
+
 function Profile(props) {
     const currentUser = React.useContext(CurrentUserContext);
-    const [name, setName] = React.useState(currentUser.name);
+    const [name, setName] = React.useState("");
     const [nameDirty, setNameDirty] = React.useState(false);
     const [nameError, setNameError] = React.useState("");
-    const [email, setEmail] = React.useState(currentUser.email);
+    const [email, setEmail] = React.useState("");
     const [emailDirty, setEmailDirty] = React.useState(false);
     const [emailError, setEmailError] = React.useState("");
     const [formValid, setFormValid] = React.useState(false);
 
     React.useEffect(() => {
-        console.log(name, email);
-        if (emailError || nameError) {
+        if (
+            emailError ||
+            nameError ||
+            (name === currentUser.name && email === currentUser.email)
+        ) {
             setFormValid(false);
         } else setFormValid(true);
-    }, [nameError, emailError, name, email]);
+    }, [currentUser, nameError, emailError, name, email]);
 
     function handleSubmit(e) {
         e.preventDefault();
         props.handleUpdateUser({ name, email });
     }
+    React.useEffect(() => {
+        setName(currentUser.name);
+        setEmail(currentUser.email);
+    }, [currentUser]);
 
     function blurHandler(e) {
         switch (e.target.name) {
@@ -79,7 +87,7 @@ function Profile(props) {
                             id="name"
                             name="name"
                             className="profile__block-input"
-                            defaultValue={currentUser.name}
+                            defaultValue={name}
                         />
                     </div>
                     <div className="profile__block">
@@ -95,7 +103,7 @@ function Profile(props) {
                             name="email"
                             onChange={onChangeEmail}
                             className="profile__block-input"
-                            defaultValue={currentUser.email}
+                            defaultValue={email}
                         />
                     </div>
                     {props.errorProfileChange && (
